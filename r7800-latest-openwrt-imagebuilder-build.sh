@@ -16,7 +16,7 @@ cd openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/
 # Use https when making image
 sed -i 's/http:/https:/g' repositories.conf
 
-Make all kernel modules built-in
+# Make all kernel modules built-in
 sed -i -e "s/=m/=y/g" build_dir/target-arm_cortex-a15+neon-vfpv4_musl_eabi/linux-ipq806x_generic/linux-*/.config
 
 # Run the final build configuration
