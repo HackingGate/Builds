@@ -3,16 +3,15 @@
 # Exit immediately if a simple command exits with a non-zero status
 set -e
 
-VERSION=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
-echo "Download OpenWrt Image Builder $VERSION"
+echo "Download OpenWrt Image Builder ${OPENWRT_VERSION}"
 
 # Download imagebuilder for R7800.
-aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
 
 # Extract & remove used file & cd to the directory
-tar -xvf openwrt-imagebuilder-${VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
-rm openwrt-imagebuilder-${VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
-cd openwrt-imagebuilder-${VERSION}-ipq806x-generic.Linux-x86_64/
+tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+rm openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+cd openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/
 
 # Use https when making image
 sed -i 's/http:/https:/g' repositories.conf
@@ -28,4 +27,5 @@ uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-
 aria2 luci-app-aria2 ariang stubby curl wget tcpdump kmod-fs-ext4 kmod-usb-storage kmod-usb-storage-uas"
 
 # list result
-ls $PWD/bin/targets/ipq806x/generic
+cd ..
+ls openwrt/bin/targets/ipq806x/generic

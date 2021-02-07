@@ -6,6 +6,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name:
+        run: |
+          export OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
+          export OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
       - uses: actions/checkout@v2
+      - name: Prerequisites
+        run: |
+          sudo apt install build-essential libncurses5-dev libncursesw5-dev \
+          zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
       - name: Build with Latest OpenWrt imagebuilder
         run: ./r7800-latest-openwrt-imagebuilder-build.sh
+      - name: Move direcotries
+        run: |
+          mv openwrt/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
+          rm -rf openwrt
+      - name: Publish
+        run: |
+          sha256sum -b */*.zip */*.bin > sha256sums.txt
+          sudo apt install tree
+          tree -H '.' -h --noreport --charset utf-8 -T $REPO -o index.html
+          cat github-corner.html >> index.html
+          sed -i "s/your-url/github.com\/${GH_USER}\/${REPO}/g" index.html
+          tree
