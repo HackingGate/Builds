@@ -1,0 +1,10 @@
+name: OpenWrt Image Builder Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Download Latest OpenWrt imagebuilder
+       run: ./clone-latest-openwrt-tag.sh
