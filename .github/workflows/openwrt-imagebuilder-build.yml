@@ -42,7 +42,7 @@ jobs:
           sed -i "s/your-url/github.com\/${GH_USER}\/${REPO}/g" index.html
           tree
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3
+        uses: JamesIves/github-pages-deploy-action@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
