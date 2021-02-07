@@ -6,7 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - name: Set Environment Variable
         run: |
           OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
@@ -15,7 +18,8 @@ jobs:
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - name: Prerequisites
         run: |
-          sudo apt install build-essential libncurses5-dev libncursesw5-dev \
+          sudo apt update
+          sudo apt install -y build-essential libncurses5-dev libncursesw5-dev \
           zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
       - name: Build with Latest OpenWrt imagebuilder
         run: |
@@ -24,13 +28,23 @@ jobs:
       - name: Move direcotries
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          mv openwrt/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
-          rm -rf openwrt
-      - name: Publish
+          mv bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
+          rm -rf openwrt-imagebuilder-*
+      - name: Generate gh-pages
         run: |
+          git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+          git fetch origin gh-pages
+          git checkout gh-pages
           sha256sum -b */*.zip */*.bin > sha256sums.txt
           sudo apt install tree
           tree -H '.' -h --noreport --charset utf-8 -T $REPO -o index.html
           cat github-corner.html >> index.html
           sed -i "s/your-url/github.com\/${GH_USER}\/${REPO}/g" index.html
           tree
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: .
+          CLEAN: false

@@ -27,5 +27,4 @@ uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-
 aria2 luci-app-aria2 ariang stubby curl wget tcpdump kmod-fs-ext4 kmod-usb-storage kmod-usb-storage-uas"
 
 # list result
-cd ..
-ls openwrt/bin/targets/ipq806x/generic
+ls bin/targets/ipq806x/generic
