@@ -6,19 +6,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name:
+      - name: Set Environment Variable
         run: |
-          export OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
-          export OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
+          OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
+          OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
+          echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
+          echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - name: Prerequisites
         run: |
           sudo apt install build-essential libncurses5-dev libncursesw5-dev \
           zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
       - name: Build with Latest OpenWrt imagebuilder
-        run: ./r7800-latest-openwrt-imagebuilder-build.sh
+        run: |
+          OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
+          ./r7800-latest-openwrt-imagebuilder-build.sh
       - name: Move direcotries
         run: |
+          OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           mv openwrt/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
           rm -rf openwrt
       - name: Publish

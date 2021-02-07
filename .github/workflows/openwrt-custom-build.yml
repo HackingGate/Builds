@@ -6,6 +6,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set Environment Variable
+      run: |
+        OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
+        OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
+        echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
+        echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - name: Clone Latest OpenWrt
-        run: ./clone-latest-openwrt-tag.sh
+        run: |
+          OPENWRT_TAG=${{ env.OPENWRT_TAG }}
+          ./clone-latest-openwrt-tag.sh
