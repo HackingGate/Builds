@@ -9,5 +9,3 @@ git clone --branch $TAG https://github.com/openwrt/openwrt.git
 cd openwrt
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-
-

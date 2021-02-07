@@ -3,7 +3,7 @@
 # Exit immediately if a simple command exits with a non-zero status
 set -e
 
-VERSION=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt | grep -E '[0-9]+\.[0-9]+\.[0-9]+'`
+VERSION=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
 echo "Download OpenWrt Image Builder $VERSION"
 
 # Download imagebuilder for R7800.
