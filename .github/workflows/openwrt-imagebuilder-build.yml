@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Download Latest OpenWrt imagebuilder
-        run: ./clone-latest-openwrt-tag.sh
+      - name: Build with Latest OpenWrt imagebuilder
+        run: ./r7800-latest-openwrt-imagebuilder-build.sh
