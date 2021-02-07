@@ -26,5 +26,7 @@ uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-
 -wpad-mini -wpad-basic wpad-openssl usbutils block-mount e2fsprogs samba4-server luci-app-samba4 \
 aria2 luci-app-aria2 ariang stubby curl wget tcpdump kmod-fs-ext4 kmod-usb-storage kmod-usb-storage-uas"
 
-# list result
-ls bin/targets/ipq806x/generic
+# Result
+cd bin/targets/ipq806x/generic/
+cat profiles.json | jq
+cat sha256sums

@@ -20,7 +20,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y build-essential libncurses5-dev libncursesw5-dev \
-          zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
+          zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python \
+          jq
       - name: Build with Latest OpenWrt imagebuilder
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
@@ -28,7 +29,8 @@ jobs:
       - name: Move direcotries
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          mv bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
+          ls
+          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
           rm -rf openwrt-imagebuilder-*
       - name: Generate gh-pages
         run: |
