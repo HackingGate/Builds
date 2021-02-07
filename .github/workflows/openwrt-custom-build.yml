@@ -1,0 +1,10 @@
+name: OpenWrt Custom Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Clone Latest OpenWrt
+       run: ./clone-latest-openwrt-tag.sh
