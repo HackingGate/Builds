@@ -21,7 +21,7 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential libncurses5-dev libncursesw5-dev \
           zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python \
-          jq
+          jq tree
       - name: Build with Latest OpenWrt imagebuilder
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
@@ -29,7 +29,6 @@ jobs:
       - name: Move direcotries
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ls
           mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
           rm -rf openwrt-imagebuilder-*
       - name: Generate gh-pages
@@ -38,10 +37,10 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages
           sha256sum -b */*.zip */*.bin > sha256sums.txt
-          sudo apt install tree
-          tree -H '.' -h --noreport --charset utf-8 -T $REPO -o index.html
+          ls -al
+          tree -H '.' -h --noreport --charset utf-8 -T ${GITHUB_REPOSITORY} -o index.html
           cat github-corner.html >> index.html
-          sed -i "s/your-url/github.com\/${GH_USER}\/${REPO}/g" index.html
+          sed -i "s/your-url/github.com\/${GITHUB_ACTOR}\/${GITHUB_REPOSITORY}/g" index.html
           tree
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
