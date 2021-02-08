@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
       - name: Set Environment Variable
         run: |
           OPENWRT_TAG=`./git-describe-latest-tag.awk https://github.com/openwrt/openwrt`
@@ -37,15 +35,15 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages
           sha256sum -b */*.zip */*.bin > sha256sums.txt
-          ls -al
           tree -H '.' -h --noreport --charset utf-8 -T ${GITHUB_REPOSITORY} -o index.html
           cat github-corner.html >> index.html
           sed -i "s~https://your-url~${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}~g" index.html
-          tree
+      - name: list and tree
+        run: ls -al | tree
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: .
-          CLEAN: false
+          CLEAN: true
