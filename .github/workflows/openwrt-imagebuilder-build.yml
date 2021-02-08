@@ -44,6 +44,3 @@ jobs:
           branch: gh-pages
           folder: .
           clean: false
-          dry-run: true
-      - name: list and tree
-        run: ls -al | tree
