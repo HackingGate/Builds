@@ -23,7 +23,7 @@ jobs:
       - name: Build with Latest OpenWrt imagebuilder
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ./r7800-latest-openwrt-imagebuilder-build.sh
+          ./r7800-openwrt-imagebuilder-build.sh
       - name: Move direcotries
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}

@@ -6,5 +6,5 @@ set -e
 echo "Cloning OpenWrt ${OPENWRT_TAG}"
 git clone --branch ${OPENWRT_TAG} https://github.com/openwrt/openwrt.git
 cd openwrt
-./scripts/feeds update -a
-./scripts/feeds install -a
+./scripts/feeds update
+./scripts/feeds install
