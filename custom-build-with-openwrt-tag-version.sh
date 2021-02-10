@@ -3,6 +3,12 @@
 # Exit immediately if a simple command exits with a non-zero status
 set -e
 
+echo "Cloning OpenWrt ${OPENWRT_TAG}"
+git clone --branch ${OPENWRT_TAG} https://github.com/openwrt/openwrt.git
+cd openwrt
+./scripts/feeds update
+./scripts/feeds install
+
 # Add tl-wr703n-v1-16m defination
 echo '
 define Device/tl-wr703n-v1
@@ -37,3 +43,6 @@ CONFIG_TARGET_PROFILE="DEVICE_tl-wr703n-v1"
 ' >> .config
 
 make defconfig
+
+# Compile
+make -j4 V=s

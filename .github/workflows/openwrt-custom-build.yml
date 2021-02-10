@@ -13,11 +13,8 @@ jobs:
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
           echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
-      - name: Clone Latest OpenWrt
+      - name: Custom Build
         run: |
           OPENWRT_TAG=${{ env.OPENWRT_TAG }}
-          ./clone-with-openwrt-tag.sh
-      - name: Configure Build
-        run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ./configure-build.sh
+          ./custom-build-with-openwrt-tag-version.sh
