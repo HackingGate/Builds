@@ -5,8 +5,6 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    outputs:
-      latest: ${{ steps.latest.conclusion }}
     steps:
       - name: Set Environment Variable
         run: |
@@ -16,10 +14,14 @@ jobs:
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - id: latest
         name: Check Published Version
-        run: curl 'https://downloads.hackinggate.com' | grep ${OPENWRT_VERSION} | grep 'netgear-r7800'
+        run: |
+          PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'netgear-r7800' | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'` | sort -V | tail -1 || echo 0.0.0`
+          if [[ "$OPENWRT_VERSION" == "$PUBLISHED_VERSION" ]]; then
+            echo "::set-output name=latest::true"
+          fi
   build:
     needs: check
-    if: needs.check.outputs.latest == 'failure'
+    if: needs.check.outputs.latest != 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variable
