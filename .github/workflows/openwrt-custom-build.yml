@@ -29,7 +29,9 @@ jobs:
       - name: Move direcotries
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          mv openwrt/bin/targets/ar71xx/generic openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          mkdir openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          mv openwrt/bin/targets/ar71xx/generic/openwrt-${OPENWRT_VERSION}-*-tl-703n-v1-* openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          mv openwrt/bin/targets/ar71xx/generic/profiles.json openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
           rm -rf openwrt
       - name: Generate gh-pages
         run: ./generate-page.sh

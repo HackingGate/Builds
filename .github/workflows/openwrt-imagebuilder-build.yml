@@ -45,6 +45,7 @@ jobs:
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
           rm -rf openwrt-imagebuilder-*
+          rm openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800/sha256sums
       - name: Generate gh-pages
         run: ./generate-page.sh
       - name: Deploy 🚀
