@@ -6,7 +6,7 @@ set -e
 git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch origin gh-pages
 git checkout gh-pages
-sha256sum -b */*.zip */*.bin > sha256sums.txt
+sha256sum -b */*.zip */*.manifest */*.img */*.bin */*.json > sha256sums.txt
 tree -H '.' -h --noreport --charset utf-8 -T ${GITHUB_REPOSITORY} -o index.html
 cat github-corner.html >> index.html
 sed -i "s~https://your-url~${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}~g" index.html
