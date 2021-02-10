@@ -15,8 +15,8 @@ jobs:
           echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - id: latest
-        name: Check Published Version      
-        run: curl 'https://downloads.hackinggate.com' | grep ''${OPENWRT_VERSION}'-ipq806x-generic-' | grep 'r7800'
+        name: Check Published Version
+        run: curl 'https://downloads.hackinggate.com' | grep ${OPENWRT_VERSION} | grep 'netgear-r7800'
   build:
     needs: check
     if: needs.check.outputs.latest == 'failure'

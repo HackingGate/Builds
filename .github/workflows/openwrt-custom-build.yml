@@ -3,7 +3,23 @@ name: OpenWrt Custom Build
 on: push
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.latest.conclusion }}
+    steps:
+      - name: Set Environment Variable
+        run: |
+          OPENWRT_TAG=`git ls-remote https://github.com/openwrt/openwrt | grep -E -o 'v19.07\.[0-9]+' | tail -1`
+          OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
+          echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
+          echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
+      - id: latest
+        name: Check Published Version
+        run: curl 'https://downloads.hackinggate.com' | grep ${OPENWRT_VERSION} | grep 'tl-wr703n'
   build:
+    needs: check
+    if: needs.check.outputs.latest == 'failure'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
