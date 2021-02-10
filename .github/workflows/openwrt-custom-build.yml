@@ -18,3 +18,24 @@ jobs:
           OPENWRT_TAG=${{ env.OPENWRT_TAG }}
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           ./custom-build-with-openwrt-tag-version.sh
+      - name: Make
+        run: |
+          cd openwrt
+          make -j4 V=s
+      - name: Tree
+        run: |
+          sudo apt install tree
+          tree openwrt/bin/
+      - name: Move direcotries
+        run: |
+          OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
+          mv openwrt/bin/targets/ar71xx/generic openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          rm -rf openwrt
+      - name: Generate gh-pages
+        run: ./generate-page.sh
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages
+          folder: .
+          clean: true

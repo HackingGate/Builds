@@ -43,6 +43,3 @@ CONFIG_TARGET_PROFILE="DEVICE_tl-wr703n-v1"
 ' >> .config
 
 make defconfig
-
-# Compile
-make -j4 V=s
