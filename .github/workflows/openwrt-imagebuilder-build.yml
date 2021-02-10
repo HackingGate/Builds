@@ -5,6 +5,8 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.latest.conclusion }}
     steps:
       - name: Set Environment Variable
         run: |
@@ -12,11 +14,12 @@ jobs:
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
           echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
-      - name: Check Published Version
-        run: curl 'https://downloads.hackinggate.com' | grep '19.07.6-ipq806x-generic-' | grep 'r7800'
+      - id: latest
+        name: Check Published Version      
+        run: curl 'https://downloads.hackinggate.com' | grep ''${OPENWRT_VERSION}'-ipq806x-generic-' | grep 'r7800'
   build:
     needs: check
-    if: needs.check.outputs.status != 'success'
+    if: needs.check.outputs.latest == 'failure'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
