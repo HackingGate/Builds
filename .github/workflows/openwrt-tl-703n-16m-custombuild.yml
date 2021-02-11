@@ -52,7 +52,7 @@ jobs:
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           mkdir openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
-          find openwrt/bin/targets/ar71xx/generic/ -name 'openwrt-'${OPENWRT_VERSION}'-*-tl-wr703n-v1-*' -exec mv {} openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m \;
+          find openwrt/bin/targets/ar71xx/generic/ -name 'openwrt-'${OPENWRT_VERSION}'-*-tl-wr703n-v1*' -exec mv {} openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m \;
           mv openwrt/bin/targets/ar71xx/generic/profiles.json openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
           rm -rf openwrt
       - name: Generate gh-pages
