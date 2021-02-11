@@ -42,7 +42,7 @@ jobs:
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           ./r7800-openwrt-imagebuilder-build.sh
-      - name: Move direcotries
+      - name: Move Files
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
