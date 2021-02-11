@@ -4,6 +4,8 @@ on: push
 
 jobs:
   check:
+    outputs:
+      latest: ${{ steps.latest.outputs.is_latest }}
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variable
@@ -17,7 +19,7 @@ jobs:
         run: |
           PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'netgear-r7800' | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -1 || echo 0.0.0`
           if [[ "$OPENWRT_VERSION" == "$PUBLISHED_VERSION" ]]; then
-            echo "::set-output name=latest::true"
+            echo "::set-output name=is_latest::true"
           fi
   build:
     needs: check
