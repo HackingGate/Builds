@@ -1,6 +1,8 @@
 name: OpenWrt Image Builder Build
 
-on: push
+on:
+  schedule:
+    - cron: "47 10 * * 2-6"
 
 jobs:
   check:
