@@ -1,8 +1,8 @@
-name: OpenWrt Image Builder Build
+name: OpenWrt TL-703N 16m (custombuild)
 
 on:
   schedule:
-    - cron: "47 10 * * 2-6"
+    - cron: "57 10 * * 2-6"
 
 jobs:
   check:
@@ -12,14 +12,14 @@ jobs:
     steps:
       - name: Set Environment Variable
         run: |
-          OPENWRT_TAG=`git ls-remote https://github.com/openwrt/openwrt | grep -E -o 'v[0-9]+\.[0-9]+\.[0-9]+' | tail -1`
+          OPENWRT_TAG=`git ls-remote https://github.com/openwrt/openwrt | grep -E -o 'v19.07\.[0-9]+' | tail -1`
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
           echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - id: latest
         name: Check Published Version
         run: |
-          PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'netgear-r7800' | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -1 || echo 0.0.0`
+          PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'tl-wr703n' | grep -E -o '19.07\.[0-9]+' | sort -V | tail -1 || echo 0.0.0`
           if [[ "$OPENWRT_VERSION" == "$PUBLISHED_VERSION" ]]; then
             echo "::set-output name=is_latest::true"
           fi
@@ -28,30 +28,33 @@ jobs:
     if: needs.check.outputs.latest != 'true'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Set Environment Variable
         run: |
-          OPENWRT_TAG=`git ls-remote https://github.com/openwrt/openwrt | grep -E -o 'v[0-9]+\.[0-9]+\.[0-9]+' | tail -1`
+          OPENWRT_TAG=`git ls-remote https://github.com/openwrt/openwrt | grep -E -o 'v19.07\.[0-9]+' | tail -1`
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+'`
           echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-      - name: Prerequisites
+      - name: Custom Build
         run: |
-          sudo apt update
-          sudo apt install -y build-essential libncurses5-dev libncursesw5-dev \
-          zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python \
-          jq tree
-      - name: Build with Latest OpenWrt imagebuilder
-        run: |
+          OPENWRT_TAG=${{ env.OPENWRT_TAG }}
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ./r7800-openwrt-imagebuilder-build.sh
+          ./custom-build-with-openwrt-tag-version.sh
+      - name: Make
+        run: |
+          cd openwrt
+          make -j4 V=s
+      - name: Tree
+        run: |
+          sudo apt install tree
+          tree openwrt/bin/
       - name: Move Files
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
-          rm -rf openwrt-imagebuilder-*
-          rm openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800/sha256sums
+          mkdir openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          find openwrt/bin/targets/ar71xx/generic/ -name 'openwrt-'${OPENWRT_VERSION}'-*-tl-wr703n-v1-*' -exec mv {} openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m \;
+          mv openwrt/bin/targets/ar71xx/generic/profiles.json openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
+          rm -rf openwrt
       - name: Generate gh-pages
         run: ./generate-page.sh
       - name: Deploy 🚀
