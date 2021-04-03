@@ -2,6 +2,9 @@ name: OpenWrt 19.07 TL-703N 16m (custombuild)
 
 on:
   push:
+    branches:
+      - main
+      - master
   pull_request:
   schedule:
     - cron: "19 7/12 * * 2-6"

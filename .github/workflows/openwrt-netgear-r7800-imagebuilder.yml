@@ -2,6 +2,9 @@ name: OpenWrt Netgear R7800 (imagebuilder)
 
 on:
   push:
+    branches:
+      - main
+      - master
   pull_request:
   schedule:
     - cron: "0 0/12 * * 2-6"
@@ -36,7 +39,7 @@ jobs:
           fi
   build:
     needs: check
-    if: needs.check.outputs.latest != 'true'
+    if: needs.check.outputs.latest != 'true' || github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variable
