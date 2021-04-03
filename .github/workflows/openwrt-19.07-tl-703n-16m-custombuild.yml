@@ -56,7 +56,7 @@ jobs:
         run: |
           OPENWRT_TAG=${{ env.OPENWRT_TAG }}
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ./wr703n-openwrt-custom-build.sh
+          ./wr703n-19.07-openwrt-custom-build.sh
       - name: Make
         run: |
           cd openwrt
