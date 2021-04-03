@@ -42,7 +42,7 @@ jobs:
           fi
   build:
     needs: check
-    if: needs.check.outputs.latest != 'true' || github.event_name != 'schedule'
+    if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
       - name: Set Environment Variable
@@ -86,4 +86,4 @@ jobs:
           branch: gh-pages
           folder: .
           clean: true
-          dry-run: github.event_name == 'pull_request'
+          dry-run: ${{ github.event_name == 'pull_request' }}
