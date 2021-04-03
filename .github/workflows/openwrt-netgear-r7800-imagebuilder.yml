@@ -80,6 +80,8 @@ jobs:
           git checkout - -- generate-page.sh
           ./generate-page.sh
           rm generate-page.sh
+      - name: Tree
+        run: tree
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:

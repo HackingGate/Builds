@@ -74,6 +74,8 @@ jobs:
           rm -rf openwrt
       - name: Generate gh-pages
         run: ./generate-page.sh
+      - name: Tree
+        run: tree
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
