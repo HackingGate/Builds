@@ -76,7 +76,10 @@ jobs:
           rm -rf openwrt-imagebuilder-*
           rm openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800/sha256sums
       - name: Generate gh-pages
-        run: ./generate-page.sh
+        run: |
+          git checkout - -- generate-page.sh
+          ./generate-page.sh
+          rm generate-page.sh
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
