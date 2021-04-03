@@ -42,7 +42,7 @@ jobs:
           fi
   build:
     needs: check
-    if: needs.check.outputs.latest != 'true'
+    if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -65,20 +65,32 @@ jobs:
         run: |
           sudo apt install tree
           tree openwrt/bin/
-      - name: Move Files
+      - name: Checkout gh-pages
+        run : |
+          git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+          git fetch origin gh-pages
+          git checkout gh-pages
+      - name: Override Files
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
+          rm -rf openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
           mkdir openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
           find openwrt/bin/targets/ath79/generic/ -name 'openwrt-'${OPENWRT_VERSION}'-*-tl-wr703n-v1*' -exec mv {} openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m \;
           mv openwrt/bin/targets/ath79/generic/profiles.json openwrt-${OPENWRT_VERSION}-tl-wr703n-v1-16m
           rm -rf openwrt
       - name: Generate gh-pages
-        run: ./generate-page.sh
+        run: |
+          git checkout - -- generate-page.sh
+          ./generate-page.sh
+          rm generate-page.sh
       - name: Tree
-        run: tree
+        run: | 
+          sudo apt install tree
+          tree
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
           folder: .
           clean: true
+          dry-run: ${{ github.event_name == 'pull_request' }}
