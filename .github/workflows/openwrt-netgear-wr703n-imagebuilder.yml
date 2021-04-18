@@ -1,4 +1,4 @@
-name: OpenWrt Netgear WR703N (imagebuilder)
+name: OpenWrt TP-Link WR703N (imagebuilder)
 
 on:
   push:

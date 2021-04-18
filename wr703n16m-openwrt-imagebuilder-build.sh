@@ -22,7 +22,7 @@ cd -
 sed -i 's/http:/https:/g' repositories.conf
 
 # Make all kernel modules built-in
-sed -i -e "s/=m/=y/g" build_dir/target-arm_cortex-a15+neon-vfpv4_musl_eabi/linux-ath79_tiny/linux-*/.config
+sed -i -e "s/=m/=y/g" build_dir/target-mips_24kc_musl/linux-ath79_tiny/linux-*/.config
 
 # Run the final build configuration
 make image PROFILE=tplink_tl-wr703n-16m \
