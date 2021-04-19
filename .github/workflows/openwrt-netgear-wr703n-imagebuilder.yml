@@ -36,7 +36,7 @@ jobs:
       - id: latest
         name: Check Published Version
         run: |
-          PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'tplink_tl-wr703n-16m' | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -1 || echo 0.0.0`
+          PUBLISHED_VERSION=`curl 'https://downloads.hackinggate.com' | grep 'tplink_tl-wr703n' | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -1 || echo 0.0.0`
           if [[ "$OPENWRT_VERSION" == "$PUBLISHED_VERSION" ]]; then
             echo "::set-output name=is_latest::true"
           fi
@@ -62,7 +62,7 @@ jobs:
       - name: Build WR703N with imagebuilder
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          ./wr703n16m-openwrt-imagebuilder-build.sh
+          ./wr703n-openwrt-imagebuilder-build.sh
       - name: Checkout gh-pages
         run : |
           git config --add remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
@@ -71,10 +71,10 @@ jobs:
       - name: Override Files
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
-          rm -rf openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n-16m
-          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64/bin/targets/ath79/tiny openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n-16m
+          rm -rf openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n
+          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64/bin/targets/ath79/tiny openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n
           rm -rf openwrt-imagebuilder-*
-          rm openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n-16m/sha256sums
+          rm openwrt-${OPENWRT_VERSION}-ath79-tiny-tplink_tl-wr703n/sha256sums
       - name: Generate gh-pages
         run: |
           git checkout - -- generate-page.sh

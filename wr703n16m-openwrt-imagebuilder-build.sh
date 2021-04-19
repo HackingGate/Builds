@@ -18,14 +18,14 @@ cd target/linux/ath79/image
 wget https://github.com/HackingGate/openwrt/raw/openwrt-21.02-modified-device/target/linux/ath79/image/tiny-tp-link.mk -O tiny-tp-link.mk
 cd -
 
-# Use https when making image
-sed -i 's/http:/https:/g' repositories.conf
+# Use https
+sed -i 's/http:/https:/g' .config repositories.conf
 
 # Make all kernel modules built-in
 sed -i -e "s/=m/=y/g" build_dir/target-mips_24kc_musl/linux-ath79_tiny/linux-*/.config
 
 # Run the final build configuration
-make image PROFILE=tplink_tl-wr703n-16m \
+make image PROFILE=tplink_tl-wr703n \
 PACKAGES="ca-bundle ca-certificates libustream-openssl ppp ppp-mod-pppoe \
 uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-full luci-theme-bootstrap luci \
 -wpad-mini -wpad-basic wpad-openssl curl wget tcpdump \
