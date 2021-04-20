@@ -27,6 +27,8 @@ jobs:
       latest: ${{ steps.latest.outputs.is_latest }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
       - name: Set Environment Variable
         run: |
           OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny`
@@ -47,12 +49,12 @@ jobs:
     if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
       - name: Set Environment Variable
         run: |
           OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
       - name: Prerequisites
         run: |
           sudo apt update
