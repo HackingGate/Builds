@@ -3,8 +3,6 @@
 # Exit immediately if a simple command exits with a non-zero status
 set -e
 
-echo "Download OpenWrt Image Builder ${OPENWRT_VERSION}"
-
 OPENWRT_MAJOR_VERSION=`echo ${OPENWRT_VERSION} | grep -E -o '[0-9]+\.[0-9]+'`
 TARGET='ath79'
 DEVICE_NAME='tl-wr703n'
@@ -14,6 +12,8 @@ if [[ $OPENWRT_MAJOR_VERSION < '20.02' ]]; then
     TARGET='ar71xx'
     DEVICE_NAME='tl-wr703n-v1'
 fi
+
+echo "Download OpenWrt Image Builder ${OPENWRT_VERSION}"
 
 # Download imagebuilder for WR703N.
 aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/${TARGET}/tiny/openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-tiny.Linux-x86_64.tar.xz
