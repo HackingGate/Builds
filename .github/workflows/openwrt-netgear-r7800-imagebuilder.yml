@@ -29,15 +29,7 @@ jobs:
     steps:
       - name: Set Environment Variable
         run: |
-          OPENWRT_TAG_LIST=`git ls-remote --tags https://github.com/openwrt/openwrt | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+($|-rc[0-9]+$)'`
-          OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -1`
-          OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
-          ATH79_TINY_IMAGEBUILDER=`curl -s -o /dev/null --head -w "%{http_code}" https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ath79/tiny/openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64.tar.xz`
-          if [[ "$ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
-            OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -2 | head -1`
-            OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
-          fi
-          echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
+          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - id: latest
         name: Check Published Version
@@ -57,15 +49,7 @@ jobs:
     steps:
       - name: Set Environment Variable
         run: |
-          OPENWRT_TAG_LIST=`git ls-remote --tags https://github.com/openwrt/openwrt | grep -E -o '[0-9]+\.[0-9]+\.[0-9]+($|-rc[0-9]+$)'`
-          OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -1`
-          OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
-          ATH79_TINY_IMAGEBUILDER=`curl -s -o /dev/null --head -w "%{http_code}" https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ath79/tiny/openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64.tar.xz`
-          if [[ "$ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
-            OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -2 | head -1`
-            OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
-          fi
-          echo "OPENWRT_TAG=${OPENWRT_TAG}" >> $GITHUB_ENV
+          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - name: Checkout 🛎️
         uses: actions/checkout@v2
