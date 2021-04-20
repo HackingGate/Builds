@@ -33,7 +33,7 @@ jobs:
           OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -1`
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
           ATH79_TINY_IMAGEBUILDER=`curl -s -o /dev/null --head -w "%{http_code}" https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ath79/tiny/openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64.tar.xz`
-          if [[ "ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
+          f [[ "$ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
             OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -2 | head -1`
             OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
           fi
@@ -61,7 +61,7 @@ jobs:
           OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -1`
           OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
           ATH79_TINY_IMAGEBUILDER=`curl -s -o /dev/null --head -w "%{http_code}" https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ath79/tiny/openwrt-imagebuilder-${OPENWRT_VERSION}-ath79-tiny.Linux-x86_64.tar.xz`
-          if [[ "ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
+          f [[ "$ATH79_TINY_IMAGEBUILDER" != 200 ]]; then
             OPENWRT_TAG=`echo ${OPENWRT_TAG_LIST} | tail -2 | head -1`
             OPENWRT_VERSION=`echo ${OPENWRT_TAG} | grep -E -o '^[0-9]+\.[0-9]+\.[0-9]+.*$'`
           fi
