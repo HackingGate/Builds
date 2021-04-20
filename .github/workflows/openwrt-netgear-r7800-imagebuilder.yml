@@ -74,9 +74,10 @@ jobs:
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
           rm -rf openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
-          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800
+          IMAGE_PREFIX=`cat openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic/profiles.json | jq '.["profiles"]' | jq 'map(.)' | jq '.[0]["image_prefix"]'`
+          mv openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/bin/targets/ipq806x/generic ${IMAGE_PREFIX}
           rm -rf openwrt-imagebuilder-*
-          rm openwrt-${OPENWRT_VERSION}-ipq806x-generic-netgear-r7800/sha256sums
+          rm ${IMAGE_PREFIX}/sha256sums
       - name: Generate gh-pages
         run: |
           git checkout - -- generate-page.sh
