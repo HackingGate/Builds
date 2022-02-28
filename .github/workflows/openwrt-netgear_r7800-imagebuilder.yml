@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Set Environment Variable
         run: |
-          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic`
+          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic .`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - id: latest
         name: Check Published Version
@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Set Environment Variable
         run: |
-          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic`
+          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic .`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - name: Prerequisites
         run: |
