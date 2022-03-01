@@ -11,7 +11,7 @@ DEVICE_NAME='tplink_tl-wr703n'
 # Workaround to fix ath79 missing wifi
 if [[ $OPENWRT_MAJOR_VERSION < '20.02' ]]; then
     TARGET='ar71xx'
-    SUBTARGET='generic'
+    SUBTARGET='tiny'
     DEVICE_NAME='tl-wr703n-v1'
 fi
 
