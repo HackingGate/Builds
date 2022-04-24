@@ -87,7 +87,7 @@ jobs:
           sudo apt install tree
           tree
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4.3.2
         with:
           branch: gh-pages
           folder: .
