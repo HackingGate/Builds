@@ -27,8 +27,8 @@ https-dns-proxy luci-app-https-dns-proxy \
 aria2 luci-app-aria2 ariang curl wget kmod-fs-ext4 kmod-usb-storage kmod-usb-storage-uas \
 luci-app-statistics collectd-mod-cpu collectd-mod-interface collectd-mod-memory collectd-mod-ping collectd-mod-rrdtool collectd-mod-wireless \
 -dnsmasq dnsmasq-full luci-app-wireguard luci-proto-wireguard 6in4 \
-ddns-scripts ddns-scripts-cloudflare luci-app-ddns bind-host \
-diffutils git"
+ddns-scripts ddns-scripts-cloudflare luci-app-ddns bind-host diffutils git \
+auc luci-app-attendedsysupgrade"
 
 # Result
 cd bin/targets/ipq806x/generic/
