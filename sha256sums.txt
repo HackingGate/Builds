@@ -74,10 +74,10 @@ d235006c3dbbb8c2b657c67aac2583a20bc7cdcf3e134d2ecd323b7d4a7629ca *./openwrt-21.0
 ce5e378316415f528b215a1f3a3aadcfc1a3cf106ffeb9e507cc8852277b8655 *./openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800/openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800-squashfs-factory.img
 c8d127daa5f902457aa32111bd20c3d1a8e90a76fa528b8047b6a329d1bf320d *./openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800/openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800-squashfs-sysupgrade.bin
 365a2a80fd7eef57a5d8a914e3e3ccd439333c03088544a5bf5f07ae33b02a4b *./openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800/openwrt-22.03.0-rc2-r19374-34b6abf5a8-ipq806x-generic-netgear_r7800.manifest
-29c9d3214e328af121b5b6f13bfb0a20e460b877c67248e57afec6a3483953ad *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/profiles.json
+c7b256fa4fd7a560004f298880ce0ba650f5be8e88058177fd298d63880927fe *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/profiles.json
 7e05bce1a7ff97f4ac2fc35f801292a78431a146e1ac5af13b0a365bd58ba16c *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/openwrt-22.03.2-ipq806x-generic-netgear_r7800-squashfs-factory.img
 53bb413205cb9861332219784e600c47bfa0852a12dc876cba4ef493a1ddee73 *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/openwrt-22.03.2-ipq806x-generic-netgear_r7800.manifest
-510dcc9604ef2c6121f93a57ee877fb58f2d02e52b5905bca40cc42df469f799 *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/openwrt-22.03.2-ipq806x-generic-netgear_r7800-squashfs-sysupgrade.bin
+ef6a5936588f05f0843004327b3d1c59e7fc2e4d8b7f74677ca6ffc0bb98bdb0 *./openwrt-22.03.2-ipq806x-generic-netgear_r7800/openwrt-22.03.2-ipq806x-generic-netgear_r7800-squashfs-sysupgrade.bin
 6cdd6ff59c92fc39bb610423e7f72549fb6c505d5e4a5445e1f5cce30fc60f8b *./openwrt-21.02.0-ipq806x-generic-netgear_r7800/profiles.json
 e66acf5ea205c5395bf6ee268aea8efa8266c7076523aeef79fd237ae99dbd14 *./openwrt-21.02.0-ipq806x-generic-netgear_r7800/openwrt-21.02.0-ipq806x-generic-netgear_r7800.manifest
 c705a8b1167c66091e08dacf98d60aa1953d2ad006494ed171930b49adac3b7a *./openwrt-21.02.0-ipq806x-generic-netgear_r7800/openwrt-21.02.0-ipq806x-generic-netgear_r7800-squashfs-sysupgrade.bin
