@@ -1,3 +1,8 @@
+# Notice
+
+This repository no longer matained.  
+Please [Upgrade using Attended Sysupgrade](https://openwrt.org/docs/guide-user/installation/attended.sysupgrade).
+
 # Downloads
 
 This project use GitHub workflow automatically build these OpenWrt images that I'm using.
