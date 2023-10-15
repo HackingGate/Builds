@@ -47,7 +47,7 @@ jobs:
   build:
     needs: check
     if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
@@ -58,9 +58,9 @@ jobs:
       - name: Prerequisites
         run: |
           sudo apt update
-          sudo apt install -y build-essential libncurses5-dev libncursesw5-dev \
-          zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python \
-          jq tree
+          sudo apt install build-essential clang flex bison g++ gawk gcc-multilib g++-multilib \
+          gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev \
+          file wget
       - name: Build TL-WR703N with imagebuilder
         run: |
           OPENWRT_VERSION=${{ env.OPENWRT_VERSION }}
