@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set Environment Variable
         run: |
           OPENWRT_VERSION=`./latest-imagebuilder-version.sh ar71xx generic v19.07`
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set Environment Variable
         run: |
           OPENWRT_VERSION=`./latest-imagebuilder-version.sh ar71xx generic v19.07`
