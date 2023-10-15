@@ -48,12 +48,15 @@ jobs:
     needs: check
     if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        major_version: [v, v22.03, v21.02, v19.07]
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
       - name: Set Environment Variable
         run: |
-          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic .`
+          OPENWRT_VERSION=`./latest-imagebuilder-version.sh ipq806x generic ${{ matrix.major_version }}`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - name: Prerequisites
         run: |
