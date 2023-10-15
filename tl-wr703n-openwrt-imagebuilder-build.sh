@@ -30,6 +30,11 @@ cd target/linux/${TARGET}/image
 wget https://github.com/HackingGate/openwrt/raw/openwrt-${OPENWRT_MAJOR_VERSION}-modified-device/target/linux/${TARGET}/image/tiny-tp-link.mk -O tiny-tp-link.mk
 cd -
 
+# Replace ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+cd target/linux/${TARGET}/dts
+wget https://github.com/HackingGate/openwrt/raw/openwrt-${OPENWRT_MAJOR_VERSION}-modified-device/target/linux/${TARGET}/dts/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi -O ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+cd -
+
 # Use https
 sed -i 's/http:/https:/g' .config repositories.conf
 
