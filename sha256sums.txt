@@ -1,3 +1,7 @@
+8c500bf597161a7bba969e2b9f08fc1d87b208009c5690378a17769bf8dac9dd *./openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n/openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n-squashfs-sysupgrade.bin
+0528fb09f4ef4d7e8592bbc585841de0e669f10d28eb14748d0d08d89bd8d8d6 *./openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n/openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n.manifest
+a5ce24281777f486424a8e54adae1e4d19ee7dfaefe0af494d2928fd556db133 *./openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n/openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n-squashfs-factory.bin
+d5e4f9041f51899e42bd1d5f3d5515f97c16cd3dfc60f893aac44b7dc8f1ddc7 *./openwrt-21.02.7-ath79-tiny-tplink_tl-wr703n/profiles.json
 9aa2f765cbb070ec7dd7bd0507027dda64386a59504066f653e205b77e6245f1 *./openwrt-23.05.0-ath79-tiny-tplink_tl-wr703n/openwrt-23.05.0-ath79-tiny-tplink_tl-wr703n-squashfs-factory.bin
 19877edee8221e091e023c4726dcab793e26a459fc0219ce1257eac8bd60a316 *./openwrt-23.05.0-ath79-tiny-tplink_tl-wr703n/openwrt-23.05.0-ath79-tiny-tplink_tl-wr703n.manifest
 720119deb0eedc6bd75153632bedd676bc573d9d8302627c1d8b7f7c1117c150 *./openwrt-23.05.0-ath79-tiny-tplink_tl-wr703n/profiles.json
@@ -6,10 +10,6 @@
 3e84e549f5a1d5727c7351d921651308c391fb908f272b2a9f27957f659c8794 *./openwrt-23.05.0-ipq806x-generic-netgear_r7800/openwrt-23.05.0-ipq806x-generic-netgear_r7800-squashfs-sysupgrade.bin
 18e145f8d08e646a2a1a67f71d4b5ff4fa0082d7397cea7798a2601f7a872eed *./openwrt-23.05.0-ipq806x-generic-netgear_r7800/openwrt-23.05.0-ipq806x-generic-netgear_r7800-squashfs-factory.img
 b150ac6ae7120a851a93e35a5a63f66372c9797a5b87b6f82e53b4e1be97a14a *./openwrt-23.05.0-ipq806x-generic-netgear_r7800/profiles.json
-5dd90afd7b845e91bc37a0ed480ea8bd9cdd358ce8907e6982c1765d155878e7 *./openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n/openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n-squashfs-sysupgrade.bin
-e53fe9f1ceeee4cc9ea2ebc344bb4c3966041d01cb915df30c61d5972dd1607d *./openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n/openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n.manifest
-bdb4d853271d5282140a4480f3f7627e8af4084107fb0c00503b015335a02119 *./openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n/openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n-squashfs-factory.bin
-c2de04e7c06475e43e935365fffe18fd91899a9c3f32bc6cf10d2c61704f254a *./openwrt-23.05.2-ath79-tiny-tplink_tl-wr703n/profiles.json
 6e40eeaf1f0f0ee68e74d6e0b3678d720e75fdb05897701fdcaccfcb86996634 *./openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n/openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n-squashfs-factory.bin
 0a63ffdefc0203657548c8f27eb64b5d5824d895631a4c076e6394a869bd237d *./openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n/openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n-squashfs-sysupgrade.bin
 2721cde915fa7a43bc3dcfc4b4fd8bea1622a1b4ee5d6e139dee9c8eff199f14 *./openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n/openwrt-22.03.5-ath79-tiny-tplink_tl-wr703n.manifest
