@@ -56,6 +56,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Set Environment Variable
         run: |
+          # if version is v19.07 use ar71xx generic instead of ath79 tiny
+          if [[ "${{ matrix.major_version }}" == "v19.07" ]]; then
+            OPENWRT_VERSION=`./latest-imagebuilder-version.sh ar71xx generic ${{ matrix.major_version }}`
+          else
+            OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny ${{ matrix.major_version }}`
+          fi
           OPENWRT_VERSION=`./latest-imagebuilder-version.sh ath79 tiny ${{ matrix.major_version }}`
           echo "OPENWRT_VERSION=${OPENWRT_VERSION}" >> $GITHUB_ENV
       - name: Prerequisites
