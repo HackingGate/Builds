@@ -6,11 +6,11 @@ set -e
 echo "Download OpenWrt Image Builder ${OPENWRT_VERSION}"
 
 # Download imagebuilder for R7800.
-aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
 
 # Extract & remove used file & cd to the directory
-tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
-rm openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
+rm openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
 cd openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/
 
 # Use https
