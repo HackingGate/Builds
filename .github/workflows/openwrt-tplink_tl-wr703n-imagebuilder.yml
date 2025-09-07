@@ -47,7 +47,7 @@ jobs:
   build:
     needs: check
     if: ${{ needs.check.outputs.latest != 'true' || github.event_name != 'schedule' }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         major_version: [v, v22.03, v21.02, v19.07]
