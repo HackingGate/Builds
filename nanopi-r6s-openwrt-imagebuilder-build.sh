@@ -35,15 +35,14 @@ make image PROFILE=${DEVICE_NAME} \
 PACKAGES="luci ca-bundle ca-certificates \
 -dnsmasq dnsmasq-full \
 https-dns-proxy luci-app-https-dns-proxy \
-luci-app-wireguard luci-proto-wireguard 6in4 \
-ddns-scripts ddns-scripts-cloudflare luci-app-ddns \
+luci-proto-wireguard 6in4 \
 luci-app-cloudflared tailscale \
 block-mount e2fsprogs kmod-fs-ext4 resize2fs \
 kmod-usb-storage kmod-usb-storage-uas usbutils \
 samba4-server luci-app-samba4 \
 aria2 luci-app-aria2 ariang \
 luci-app-statistics collectd-mod-cpu collectd-mod-interface collectd-mod-memory collectd-mod-ping collectd-mod-rrdtool collectd-mod-wireless \
-auc luci-app-attendedsysupgrade \
+luci-app-attendedsysupgrade \
 kmod-r8169 \
 bind-host curl wget tcpdump \
 diffutils git map bash tar vim"
