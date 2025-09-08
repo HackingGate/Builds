@@ -19,7 +19,7 @@ rm openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-${SUBTARGET}.Linux-x86_64.t
 cd openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-${SUBTARGET}.Linux-x86_64/
 
 # Configure rootfs partition size (1GB = 1024MB)
-sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=104/CONFIG_TARGET_ROOTFS_PARTSIZE=256/' .config
+sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=104/CONFIG_TARGET_ROOTFS_PARTSIZE=232/' .config
 
 # Use https
 sed -i 's/http:/https:/g' .config repositories.conf
@@ -42,7 +42,7 @@ PACKAGES="base-files dropbear libc logd mtd opkg procd-ujail uboot-envtools uci 
 ca-bundle ca-certificates libustream-mbedtls \
 -dnsmasq dnsmasq-full odhcp6c odhcpd-ipv6only ppp ppp-mod-pppoe 6in4 https-dns-proxy luci-proto-wireguard \
 kmod-fs-ext4 kmod-gpio-button-hotplug kmod-r8169 kmod-usb-storage kmod-usb-storage-uas kernel \
-block-mount e2fsprogs mkf2fs partx-utils resize2fs util-linux \
+block-mount e2fsprogs mkf2fs partx-utils resize2fs \
 luci luci-app-aria2 luci-app-attendedsysupgrade luci-app-cloudflared luci-app-https-dns-proxy luci-app-samba4 luci-app-statistics \
 collectd-mod-ping collectd-mod-wireless \
 aria2 ariang samba4-server tailscale \
