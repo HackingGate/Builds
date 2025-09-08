@@ -28,10 +28,10 @@ sed -i 's/http:/https:/g' .config repositories.conf
 sed -i -e "s/=m/=y/g" build_dir/target-aarch64_generic_musl/linux-${TARGET}_${SUBTARGET}/linux-*/.config
 
 # Run the final build configuration
-make image PROFILE=${DEVICE_NAME} \
+make -j$(nproc) image PROFILE=${DEVICE_NAME} \
 PACKAGES="base-files dropbear libc logd mtd opkg procd-ujail uboot-envtools uci urandom-seed urngd \
 ca-bundle ca-certificates libustream-mbedtls \
-dnsmasq-full odhcp6c odhcpd-ipv6only ppp ppp-mod-pppoe 6in4 https-dns-proxy luci-proto-wireguard \
+-dnsmasq dnsmasq-full odhcp6c odhcpd-ipv6only ppp ppp-mod-pppoe 6in4 https-dns-proxy luci-proto-wireguard \
 kmod-fs-ext4 kmod-gpio-button-hotplug kmod-r8169 kmod-usb-storage kmod-usb-storage-uas kernel \
 block-mount e2fsprogs mkf2fs partx-utils resize2fs \
 luci luci-app-aria2 luci-app-attendedsysupgrade luci-app-cloudflared luci-app-https-dns-proxy luci-app-samba4 luci-app-statistics \
