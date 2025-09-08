@@ -28,6 +28,7 @@ sed -i 's/http:/https:/g' .config repositories.conf
 # Make all kernel modules built-in
 sed -i -e "s/=m/=y/g" build_dir/target-aarch64_generic_musl/linux-${TARGET}_${SUBTARGET}/linux-*/.config
 
+# https://openwrt.org/docs/guide-user/advanced/expand_root
 # Create custom files directory structure for filesystem expansion
 mkdir -p files/etc/uci-defaults
 
