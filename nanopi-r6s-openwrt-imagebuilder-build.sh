@@ -18,11 +18,8 @@ tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-${SUBTARGET}.Linux-x8
 rm openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-${SUBTARGET}.Linux-x86_64.tar.zst
 cd openwrt-imagebuilder-${OPENWRT_VERSION}-${TARGET}-${SUBTARGET}.Linux-x86_64/
 
-# Replace image files with custom 32GB eMMC configuration
-cd target/linux/${TARGET}/image
-wget https://github.com/HackingGate/openwrt/raw/openwrt-${OPENWRT_MAJOR_VERSION}-modified-device/target/linux/${TARGET}/image/Makefile -O Makefile
-wget https://github.com/HackingGate/openwrt/raw/openwrt-${OPENWRT_MAJOR_VERSION}-modified-device/target/linux/${TARGET}/image/armv8.mk -O armv8.mk
-cd -
+# Configure rootfs partition size (1GB = 1024MB)
+sed -i 's/CONFIG_TARGET_ROOTFS_PARTSIZE=104/CONFIG_TARGET_ROOTFS_PARTSIZE=32768/' .config
 
 # Use https
 sed -i 's/http:/https:/g' .config repositories.conf
