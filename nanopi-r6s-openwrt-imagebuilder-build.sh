@@ -28,15 +28,6 @@ sed -i 's/http:/https:/g' .config repositories.conf
 # Make all kernel modules built-in
 sed -i -e "s/=m/=y/g" build_dir/target-aarch64_generic_musl/linux-${TARGET}_${SUBTARGET}/linux-*/.config
 
-# Create custom files directory structure for filesystem expansion
-mkdir -p files/etc/uci-defaults
-
-# Download the filesystem expansion script directly to uci-defaults
-curl -o files/etc/uci-defaults/99-expand-rootfs https://gist.githubusercontent.com/HackingGate/98f80db3645a3c383ea4fa179aaa4e25/raw/f2c27da2bbb53a35556100367b03f9b650766bd8/expand_rootfs.sh
-
-# Make the script executable
-chmod +x files/etc/uci-defaults/99-expand-rootfs
-
 # Run the final build configuration
 make -j$(nproc) image PROFILE=${DEVICE_NAME} \
 PACKAGES="base-files dropbear libc logd mtd opkg procd-ujail uboot-envtools uci urandom-seed urngd \
