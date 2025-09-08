@@ -90,7 +90,12 @@ cat << "EOF" > files/etc/sysupgrade.conf
 EOF
 
 # Run the final build configuration
-make -j$(nproc) image PROFILE=${DEVICE_NAME} \
+# https://openwrt.org/docs/guide-user/additional-software/imagebuilder
+#  The list of currently installed packages on your device can be obtained with the following command:
+# echo $(opkg list-installed | sed -e "s/\s.*$//")
+make -j$(nproc) image \
+PROFILE=${DEVICE_NAME} \
+FILES="files" \
 PACKAGES="base-files dropbear libc logd mtd opkg procd-ujail uboot-envtools uci urandom-seed urngd \
 ca-bundle ca-certificates libustream-mbedtls \
 -dnsmasq dnsmasq-full odhcp6c odhcpd-ipv6only ppp ppp-mod-pppoe 6in4 https-dns-proxy luci-proto-wireguard \
