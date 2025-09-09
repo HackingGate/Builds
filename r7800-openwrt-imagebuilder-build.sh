@@ -6,11 +6,11 @@ set -e
 echo "Download OpenWrt Image Builder ${OPENWRT_VERSION}"
 
 # Download imagebuilder for R7800.
-aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+aria2c -c -x4 -s4 https://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/ipq806x/generic/openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
 
 # Extract & remove used file & cd to the directory
-tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
-rm openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.xz
+tar -xvf openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
+rm openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64.tar.zst
 cd openwrt-imagebuilder-${OPENWRT_VERSION}-ipq806x-generic.Linux-x86_64/
 
 # Use https
@@ -26,9 +26,7 @@ https-dns-proxy luci-app-https-dns-proxy \
 -wpad-mini -wpad-basic -wpad-basic-wolfssl -wpad-basic-mbedtls wpad-mbedtls usbutils block-mount e2fsprogs samba4-server luci-app-samba4 \
 aria2 luci-app-aria2 ariang curl wget kmod-fs-ext4 kmod-usb-storage kmod-usb-storage-uas \
 luci-app-statistics collectd-mod-cpu collectd-mod-interface collectd-mod-memory collectd-mod-ping collectd-mod-rrdtool collectd-mod-wireless \
--dnsmasq dnsmasq-full luci-app-wireguard luci-proto-wireguard 6in4 \
-ddns-scripts ddns-scripts-cloudflare luci-app-ddns bind-host diffutils git \
-auc luci-app-attendedsysupgrade"
+-dnsmasq dnsmasq-full luci-proto-wireguard tailscale 6in4 git luci-app-attendedsysupgrade"
 
 # Result
 cd bin/targets/ipq806x/generic/
