@@ -98,7 +98,7 @@ make -j$(nproc) image \
 PROFILE=${DEVICE_NAME} \
 FILES="files" \
 PACKAGES="base-files dropbear libc logd mtd opkg procd-ujail uboot-envtools uci urandom-seed urngd \
-ca-bundle ca-certificates libustream-mbedtls \
+ca-bundle ca-certificates -libustream-mbedtls libustream-openssl openssl-util \
 -dnsmasq dnsmasq-full odhcp6c odhcpd-ipv6only ppp ppp-mod-pppoe 6in4 https-dns-proxy luci-proto-wireguard \
 kmod-fs-ext4 kmod-gpio-button-hotplug kmod-r8169 kmod-usb-storage kmod-usb-storage-uas kernel \
 block-mount e2fsprogs mkf2fs partx-utils resize2fs f2fs-tools fdisk lsblk losetup blockdev parted blkid \
